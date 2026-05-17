@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JourneyNest| Travel Booking</title>
+    
+    <!-- Typography: 2025 Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header id="header" class="navbar-wrapper">
+        <nav class="navbar container">
+            <div class="logo">
+                <i class="fa-solid fa-plane-departure"></i> JourneyNest
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#experiences">Experiences</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </li>
+                <li><a href="#login" class="btn btn-primary">Sign In</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section with Booking Form -->
+        <section class="hero">
+            <div class="hero-bg">
+                <img src="images/hero.png" alt="Tropical Paradise Sunrise">
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="container hero-content">
+                <div class="hero-text" data-animate="slide-up">
+                    <h1>Discover Your Next <span class="highlight-text">Adventure</span></h1>
+                    <p>Experience the world with unparalleled elegance. From serene beaches to ancient temples, your journey begins here.</p>
+                </div>
+
+                <!-- Booking Engine (Glassmorphism) -->
+                <div class="booking-engine glass-card" data-animate="fade-in" data-delay="0.2">
+                    <div class="booking-tabs">
+                        <button class="tab-btn active" data-tab="hotels"><i class="fa-solid fa-bed"></i> Stays</button>
+                        <button class="tab-btn" data-tab="flights"><i class="fa-solid fa-plane"></i> Flights</button>
+                        <button class="tab-btn" data-tab="cars"><i class="fa-solid fa-car"></i> Cars</button>
+                    </div>
+                    
+                    <form class="booking-form active" id="hotels-form">
+                        <div class="form-group">
+                            <label>Destination</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <input type="text" placeholder="Where are you going?">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Check-in</label>
+                            <div class="input-with-icon">
+                                <i class="fa-regular fa-calendar"></i>
+                                <input type="text" placeholder="Add dates">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Check-out</label>
+                            <div class="input-with-icon">
+                                <i class="fa-regular fa-calendar-check"></i>
+                                <input type="text" placeholder="Add dates">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Guests</label>
+                            <div class="input-with-icon">
+                                <i class="fa-regular fa-user"></i>
+                                <input type="text" placeholder="2 adults, 0 children">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Destinations (Grid Layout) -->
+        <section id="destinations" class="destinations section-padding">
+            <!-- Default Animated Background -->
+            <div class="default-animated-bg"></div>
+
+            <!-- Interactive Background Layers (A/B Crossfade) -->
+            <div class="interactive-bg-container" id="dest-bg-a"></div>
+            <div class="interactive-bg-container" id="dest-bg-b"></div>
+            <div class="interactive-bg-overlay"></div>
+
+            <div class="container relative-z">
+                <div class="section-title text-center" data-animate="slide-up">
+                    <span class="subtitle">Trending Now</span>
+                    <h2>Popular Destinations</h2>
+                </div>
+                
+                <div class="destination-grid">
+                    <!-- Dest 1 -->
+                    <div class="dest-card" data-animate="slide-up" data-click-anim="page-flip" data-bg-url="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1000&q=80">
+                        <div class="dest-img">
+                            <img src="images/dest1.png" alt="Kyoto Temple">
+                            <div class="dest-badge">Popular</div>
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-header">
+                                  <h3>Kyoto, Japan</h3>
+                                  <span class="rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <p>Experience the serene beauty of ancient temples and autumn leaves.</p>
+                            <div class="dest-footer">
+                                <span class="price">From ₹70,000</span>
+                                <button class="btn btn-secondary btn-small">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dest 2 -->
+                    <div class="dest-card" data-animate="slide-up" data-delay="0.1" data-click-anim="blur" data-bg-url="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1000&q=80">
+                        <div class="dest-img">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=80" alt="Bali Beach">
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-header">
+                                <h3>Bali, Indonesia</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <p>Discover pristine beaches, lush jungles, and vibrant culture in this tropical paradise.</p>
+                            <div class="dest-footer">
+                                <span class="price">From ₹80,000</span>
+                                <button class="btn btn-secondary btn-small">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dest 3 -->
+                    <div class="dest-card" data-animate="slide-up" data-delay="0.2" data-click-anim="grayscale" data-bg-url="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1000&q=80">
+                        <div class="dest-img">
+                            <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1000&q=80" alt="Sydney Opera House">
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-header">
+                                <h3>Sydney, Australia</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <p>Explore the iconic Opera House, stunning beaches, and vibrant harbour life.</p>
+                            <div class="dest-footer">
+                                <span class="price">From ₹1,15,000</span>
+                                <button class="btn btn-secondary btn-small">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dest 4 -->
+                    <div class="dest-card" data-animate="slide-up" data-delay="0.3" data-click-anim="page-flip" data-bg-url="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1000&q=80">
+                        <div class="dest-img">
+                            <img src="images/dest4.png" alt="Santorini, Greece">
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-header">
+                                <h3>Santorini, Greece</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <p>Witness breathtaking sunsets over white-washed buildings.</p>
+                            <div class="dest-footer">
+                                <span class="price">From ₹1,15,000</span>
+                                <button class="btn btn-secondary btn-small">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dest 5 -->
+                    <div class="dest-card" data-animate="slide-up" data-delay="0.4" data-click-anim="tilt" data-bg-url="https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?auto=format&fit=crop&w=1000&q=80">
+                        <div class="dest-img">
+                            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1000&q=80" alt="New York, USA">
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-header">
+                                <h3>New York, USA</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.8</span>
+                            </div>
+                            <p>Experience the vibrant energy of the city that never sleeps.</p>
+                            <div class="dest-footer">
+                                <span class="price">From ₹90,000</span>
+                                <button class="btn btn-secondary btn-small">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dest 6 -->
+                    <div class="dest-card" data-animate="slide-up" data-delay="0.5" data-click-anim="flash" data-bg-url="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1000&q=80">
+                        <div class="dest-img">
+                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1000&q=80" alt="Maldives">
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-header">
+                                <h3>Maldives, Asia</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 5.0</span>
+                            </div>
+                            <p>Relax in luxurious overwater bungalows above blue waters.</p>
+                            <div class="dest-footer">
+                                <span class="price">From ₹2,00,000</span>
+                                <button class="btn btn-secondary btn-small">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dest 7 -->
+                    <div class="dest-card" data-animate="slide-up" data-delay="0.6" data-click-anim="lift" data-bg-url="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1000&q=80">
+                        <div class="dest-img">
+                            <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1000&q=80" alt="Rome, Italy">
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-header">
+                                <h3>Rome, Italy</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.7</span>
+                            </div>
+                            <p>Walk through history with ancient architecture and cuisine.</p>
+                            <div class="dest-footer">
+                                <span class="price">From ₹85,000</span>
+                                <button class="btn btn-secondary btn-small">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dest 8 -->
+                    <div class="dest-card" data-animate="slide-up" data-delay="0.7" data-click-anim="sepia" data-bg-url="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1000&q=80">
+                        <div class="dest-img">
+                            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1000&q=80" alt="Dubai, UAE">
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-header">
+                                <h3>Dubai, UAE</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.8</span>
+                            </div>
+                            <p>Discover architectural marvels and luxury shopping.</p>
+                            <div class="dest-footer">
+                                <span class="price">From ₹1,05,000</span>
+                                <button class="btn btn-secondary btn-small">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features/Services Section (Flexbox) -->
+        <section class="features section-padding bg-ethereal">
+            <div class="container">
+                <div class="section-title text-center" data-animate="slide-up">
+                    <span class="subtitle">Why Choose Us</span>
+                    <h2>Award-Winning Experience</h2>
+                </div>
+                
+                <div class="features-flex">
+                    <div class="feature-item" data-animate="slide-up" data-delay="0.1">
+                        <div class="feature-icon glow-mocha">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3>Secure Booking</h3>
+                        <p>Industry-leading security standards for a worry-free transaction process.</p>
+                    </div>
+                    <div class="feature-item" data-animate="slide-up" data-delay="0.2">
+                        <div class="feature-icon glow-mocha">
+                            <i class="fa-solid fa-tags"></i>
+                        </div>
+                        <h3>Best Price Match</h3>
+                        <p>Find a lower price elsewhere? We'll match it and give you a 10% discount.</p>
+                    </div>
+                    <div class="feature-item" data-animate="slide-up" data-delay="0.3">
+                        <div class="feature-icon glow-mocha">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3>24/7 Concierge</h3>
+                        <p>Our premium support team is available around the clock, wherever you are.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand" data-animate="slide-up">
+                <div class="logo">
+                    <i class="fa-solid fa-plane-departure"></i> Wanderlust
+                </div>
+                <p>Architecting the future of travel. Honoring the Mobile-First paradigm.</p>
+            </div>
+            <div class="footer-links" data-animate="slide-up" data-delay="0.15">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-links" data-animate="slide-up" data-delay="0.3">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Cancellation Policy</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" data-animate="fade-in" data-delay="0.45">
+            <p>&copy; 2026 JourneyNest Travel . Designed with 2025 Aesthetics.</p>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
