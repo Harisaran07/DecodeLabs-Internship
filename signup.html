@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | Travel Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="video-bg">
+        <iframe src="https://www.youtube.com/embed/QGmZ1rsKJ9c?autoplay=1&mute=1&loop=1&playlist=QGmZ1rsKJ9c&controls=0&showinfo=0&start=10" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+    </div>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h1 class="auth-title-clean">Signup</h1>
+            
+            <form class="clean-form" id="signupForm" novalidate>
+                <div class="input-group">
+                    <input type="text" id="signupUsername" placeholder="Name" required>
+                    <span class="error-msg" id="signupUsernameError"></span>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="signupPhone" placeholder="Phone number" required>
+                    <span class="error-msg" id="signupPhoneError"></span>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="signupEmail" placeholder="Email" required>
+                    <span class="error-msg" id="signupEmailError"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signupPassword" placeholder="Create password" required>
+                    <span class="error-msg" id="signupPasswordError"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm password" required>
+                    <svg viewBox="0 0 24 24" class="eye-icon"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    <span class="error-msg" id="signupConfirmError"></span>
+                </div>
+                
+                <button type="submit" class="btn-clean-primary">Signup</button>
+                
+                <p class="auth-switch-text">Already have an account? <a href="login.html">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signupForm');
+        if (signupForm) {
+            signupForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                let valid = true;
+
+                const username = document.getElementById('signupUsername');
+                const phone = document.getElementById('signupPhone');
+                const email = document.getElementById('signupEmail');
+                const password = document.getElementById('signupPassword');
+                const confirmPassword = document.getElementById('signupConfirmPassword');
+                const usernameError = document.getElementById('signupUsernameError');
+                const phoneError = document.getElementById('signupPhoneError');
+                const emailError = document.getElementById('signupEmailError');
+                const passwordError = document.getElementById('signupPasswordError');
+                const confirmError = document.getElementById('signupConfirmError');
+
+                usernameError.textContent = '';
+                phoneError.textContent = '';
+                emailError.textContent = '';
+                passwordError.textContent = '';
+                confirmError.textContent = '';
+                username.classList.remove('input-error');
+                phone.classList.remove('input-error');
+                email.classList.remove('input-error');
+                password.classList.remove('input-error');
+                confirmPassword.classList.remove('input-error');
+
+                if (username.value.trim() === '') {
+                    usernameError.textContent = '⚠ Name is required';
+                    username.classList.add('input-error');
+                    valid = false;
+                } else if (username.value.trim().length < 3) {
+                    usernameError.textContent = '⚠ Name must be at least 3 characters';
+                    username.classList.add('input-error');
+                    valid = false;
+                }
+
+                const phonePattern = /^[0-9]{10}$/;
+                if (phone.value.trim() === '') {
+                    phoneError.textContent = '⚠ Phone number is required';
+                    phone.classList.add('input-error');
+                    valid = false;
+                } else if (!phonePattern.test(phone.value.trim())) {
+                    phoneError.textContent = '⚠ Enter a valid 10-digit phone number';
+                    phone.classList.add('input-error');
+                    valid = false;
+                }
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email.value.trim() === '') {
+                    emailError.textContent = '⚠ Email is required';
+                    email.classList.add('input-error');
+                    valid = false;
+                } else if (!emailPattern.test(email.value.trim())) {
+                    emailError.textContent = '⚠ Enter a valid email address';
+                    email.classList.add('input-error');
+                    valid = false;
+                }
+
+                if (password.value.trim() === '') {
+                    passwordError.textContent = '⚠ Password is required';
+                    password.classList.add('input-error');
+                    valid = false;
+                } else if (password.value.length < 6) {
+                    passwordError.textContent = '⚠ Password must be at least 6 characters';
+                    password.classList.add('input-error');
+                    valid = false;
+                }
+
+                if (confirmPassword.value.trim() === '') {
+                    confirmError.textContent = '⚠ Confirm password is required';
+                    confirmPassword.classList.add('input-error');
+                    valid = false;
+                } else if (password.value !== confirmPassword.value) {
+                    confirmError.textContent = '⚠ Passwords do not match';
+                    confirmPassword.classList.add('input-error');
+                    valid = false;
+                }
+
+                if (!valid) {
+                    return;
+                }
+
+                // Call server API to create account
+                try {
+                    await fetch('/api/auth/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            username: username.value.trim(),
+                            phoneNumber: phone.value.trim(),
+                            email: email.value.trim(),
+                            password: password.value
+                        })
+                    });
+                } catch (err) {
+                    console.error('Signup error:', err);
+                } finally {
+                    // Always redirect to login page without showing alerts
+                    window.location.replace('login.html');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

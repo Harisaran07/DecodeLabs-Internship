@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Travel Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="video-bg">
+        <iframe src="https://www.youtube.com/embed/QGmZ1rsKJ9c?autoplay=1&mute=1&loop=1&playlist=QGmZ1rsKJ9c&controls=0&showinfo=0&start=10" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+    </div>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h1 class="auth-title-clean">Login</h1>
+            
+            <form class="clean-form" id="loginForm" novalidate autocomplete="off">
+                <div class="input-group">
+                    <input type="email" id="loginEmail" placeholder="Email" required autocomplete="new-email">
+                    <span class="error-msg" id="emailError"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required autocomplete="new-password">
+                    <svg viewBox="0 0 24 24" class="eye-icon"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    <span class="error-msg" id="passwordError"></span>
+                </div>
+                
+                <div class="forgot-link-wrapper">
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn-clean-primary">Login</button>
+                
+                <p class="auth-switch-text">Don't have an account? <a href="signup.html">Signup</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let valid = true;
+
+            const email = document.getElementById('loginEmail');
+            const password = document.getElementById('loginPassword');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            email.classList.remove('input-error');
+            password.classList.remove('input-error');
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value.trim() === '') {
+                emailError.textContent = '⚠ Email is required';
+                email.classList.add('input-error');
+                valid = false;
+            } else if (!emailPattern.test(email.value.trim())) {
+                emailError.textContent = '⚠ Enter a valid email address';
+                email.classList.add('input-error');
+                valid = false;
+            }
+
+            if (password.value.trim() === '') {
+                passwordError.textContent = '⚠ Password is required';
+                password.classList.add('input-error');
+                valid = false;
+            } else if (password.value.length < 6) {
+                passwordError.textContent = '⚠ Password must be at least 6 characters';
+                password.classList.add('input-error');
+                valid = false;
+            }
+
+            if (valid) {
+                fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email.value.trim(),
+                        password: password.value
+                    })
+                })
+                .then(response => response.json().then(data => ({ status: response.status, body: data })))
+                .then(({ status, body }) => {
+                    if (status === 200) {
+                        if (body.user) {
+                            localStorage.setItem('currentUser', JSON.stringify(body.user));
+                        }
+                        document.getElementById('loginForm').reset();
+                        window.location.href = 'home.html';
+                    } else {
+                        passwordError.textContent = '⚠ ' + (body.error || 'Login failed');
+                        password.classList.add('input-error');
+                        email.classList.add('input-error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('❌ Could not connect to server. Ensure backend is running.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -15,37 +15,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Booking Form Tabs State Management
     const tabBtns = document.querySelectorAll('.tab-btn');
-    const formGroups = document.querySelectorAll('.form-group');
+    const form = document.querySelector('.booking-form');
     
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all
-            tabBtns.forEach(t => t.classList.remove('active'));
-            // Add active class to clicked
-            btn.classList.add('active');
-            
-            // Basic animation effect for form change (simulating state change)
-            const form = document.querySelector('.booking-form');
-            form.style.opacity = '0';
-            
-            setTimeout(() => {
-                // Change placeholder text based on tab to simulate switching contexts
-                const tabType = btn.getAttribute('data-tab');
-                const firstInput = form.querySelector('input');
+    if (tabBtns.length && form) {
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(t => t.classList.remove('active'));
+                btn.classList.add('active');
+
+                form.style.opacity = '0';
                 
-                if(tabType === 'flights') {
-                    firstInput.placeholder = "Flying to?";
-                } else if(tabType === 'cars') {
-                    firstInput.placeholder = "Pick-up location";
-                } else {
-                    firstInput.placeholder = "Where are you going?";
-                }
-                
-                form.style.opacity = '1';
-                form.style.transition = 'opacity 0.4s ease';
-            }, 200);
+                setTimeout(() => {
+                    const tabType = btn.getAttribute('data-tab');
+                    const firstInput = form.querySelector('input');
+
+                    if (firstInput) {
+                        if (tabType === 'flights') {
+                            firstInput.placeholder = "Flying to?";
+                        } else if (tabType === 'cars') {
+                            firstInput.placeholder = "Pick-up location";
+                        } else {
+                            firstInput.placeholder = "Where are you going?";
+                        }
+                    }
+
+                    form.style.opacity = '1';
+                    form.style.transition = 'opacity 0.4s ease';
+                }, 200);
+            });
         });
-    });
+    }
 
     // 3. Award-Winning Entrance Animations (Intersection Observer)
     const observerOptions = {
@@ -176,7 +175,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 7. Navbar Item 3D Calendar Page Flip on Click
+    // 7. Learn More CTA adds smooth page transition to signup destination
+    const learnMoreBtn = document.getElementById('learn-more-btn');
+    if (learnMoreBtn) {
+        learnMoreBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 300);
+        });
+    }
+
+    // 8. Navbar Item 3D Calendar Page Flip on Click
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
